@@ -4,7 +4,6 @@ const Navbar = ({ setSearch }) => {
   const [value, setValue] = useState("");
   const handleChange = (e) => {
     setValue(e.target.value);
-    console.log(value);
   };
   const handleKeyDown = (e) => {
     if (e.key == "Enter") {

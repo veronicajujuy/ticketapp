@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import EventItem from "./EventItem";
 import { useNavigate } from "react-router-dom";
 
-const Events = ({ search, events }) => {
+const Events = ({ events }) => {
   const navigate = useNavigate();
   const handleEventClick = (id) => {
     navigate(`detail/${id}`);

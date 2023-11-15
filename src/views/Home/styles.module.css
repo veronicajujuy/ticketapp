@@ -1,0 +1,9 @@
+.pagination {
+  text-align: center;
+  list-style-type: none;
+  display: flex;
+  width: 70%;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}

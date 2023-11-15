@@ -2,25 +2,45 @@ import { useEffect, useState } from "react";
 import Events from "../../components/Events";
 import Navbar from "../../components/Navbar";
 import useEvents from "../../hooks/useEvents";
+import ReactPaginate from "react-paginate";
+import styles from "./styles.module.css";
 
 const Home = () => {
   const [search, setSearch] = useState("");
-  const { events, isLoading, error, fetchEvents } = useEvents();
+  const { events, isLoading, error, fetchEvents, pages } = useEvents();
   useEffect(() => {
     fetchEvents();
   }, []);
-  const eventsFiltered = search
-    ? events.filter((item) => item.name.toLowerCase().includes(search))
-    : events;
+
+  const handleSearch = (term) => {
+    setSearch(term);
+    fetchEvents(`&keyword=${term}`);
+  };
+  const handlePageClick = (selected) => {
+    console.log(selected);
+  };
+
   if (error) return <div>Ha ocurrido un error</div>;
 
   return (
     <>
-      <Navbar setSearch={setSearch} />
+      <Navbar setSearch={handleSearch} />
       {isLoading ? (
         <div>Cargando...</div>
       ) : (
-        <Events search={search} events={eventsFiltered} />
+        <>
+          <Events search={handleSearch} events={events} />
+          <ReactPaginate
+            className={styles.pagination}
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pages}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+          />
+        </>
       )}
     </>
   );
