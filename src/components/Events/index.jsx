@@ -1,23 +1,16 @@
 import EventItem from "./EventItem";
-import useEvents from "../../hooks/useEvents";
 import { useNavigate } from "react-router-dom";
 
-const Events = ({ search }) => {
+const Events = ({ search, events }) => {
   const navigate = useNavigate();
-  const { events, isLoading, error } = useEvents();
   const handleEventClick = (id) => {
     navigate(`detail/${id}`);
   };
-  const eventsFiltered = search
-    ? events.filter((item) => item.name.toLowerCase().includes(search))
-    : events;
-  if (error) return <div>Ha ocurrido un error</div>;
-  if (isLoading) return <div>Cargando...</div>;
 
   return (
     <div>
       Eventos
-      {eventsFiltered?.map((item) => (
+      {events?.map((item) => (
         <EventItem
           key={item.id}
           info={item.info}
