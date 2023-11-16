@@ -16,8 +16,8 @@ const Home = () => {
     setSearch(term);
     fetchEvents(`&keyword=${term}`);
   };
-  const handlePageClick = (selected) => {
-    console.log(selected);
+  const handlePageClick = ({ selected }) => {
+    fetchEvents(`&keyword=${search}&page=${selected}`);
   };
 
   if (error) return <div>Ha ocurrido un error</div>;
@@ -32,6 +32,7 @@ const Home = () => {
           <Events search={handleSearch} events={events} />
           <ReactPaginate
             className={styles.pagination}
+            activeClassName={styles.active}
             breakLabel="..."
             nextLabel=">"
             onPageChange={handlePageClick}
