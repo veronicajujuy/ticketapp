@@ -14,7 +14,9 @@ const Detail = () => {
     const fetchEventData = async () => {
       try {
         const response = await axios.get(
-          `https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=TI1kdhWKrgmAmyOVD0v1jtJ4SZpii47c`
+          `https://app.ticketmaster.com/discovery/v2/events/${id}?apikey=${
+            import.meta.env.VITE_API_KEY
+          }`
         );
         setData(response.data);
         console.log(response.data);

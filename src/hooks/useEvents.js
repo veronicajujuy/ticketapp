@@ -8,9 +8,9 @@ const useEvents = () => {
   const fetchEvents = async (term) => {
     try {
       const response = await axios.get(
-        `https://app.ticketmaster.com/discovery/v2/events.json?apikey=TI1kdhWKrgmAmyOVD0v1jtJ4SZpii47c&countryCode=MX${
-          term ? term : ""
-        }`
+        `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${
+          import.meta.env.VITE_API_KEY
+        }&countryCode=MX${term ? term : ""}`
       );
       setData(response);
       setIsLoading(false);
